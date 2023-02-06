@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #container {
+        width: 100%;
+        height: 200px;
+        position: relative;
+      }
+      
+      .welcome {
+        display: flex;
+        justify-content: center;
+      }
+      
+      #staffan {
+        width: 10%;
+        height: auto;
+        position: absolute;
+        transition: transform 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome">
+      <div class="center">Fånga Staffan!</div>
+    </div>
+    <div id="container">
+      <a href="https://discord.com/invite/NArhNWPrds">
+        <img src="staffan.jpg" id="staffan">
+      </a>
+    </div>    
+    <script>
+      const staffan = document.getElementById("staffan");
+      const container = document.getElementById("container");
+      
+      container.addEventListener("mousemove", function(event) {
+        let staffanRect = staffan.getBoundingClientRect();
+        
+        if (event.clientX > staffanRect.left - 100 && event.clientX < staffanRect.right + 100 &&
+            event.clientY > staffanRect.top - 100 && event.clientY < staffanRect.bottom + 100) {
+          let containerWidth = container.offsetWidth - staffan.offsetWidth;
+          let containerHeight = container.offsetHeight - staffan.offsetHeight;
+          
+          let newX = Math.floor(Math.random() * (containerWidth + staffan.offsetWidth));
+          let newY = Math.floor(Math.random() * (containerHeight + staffan.offsetHeight));
+          
+          staffan.style.left = `${newX}px`;
+          staffan.style.top = `${newY}px`;
+        }
+      });
+    </script>
+  </body>
+</html>
